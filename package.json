@@ -84,6 +84,7 @@
     "prettier": "2.2.1",
     "react": "17.0.2",
     "react-native": "0.66.0",
+    "react-native-extra-dimensions-android": "teaualune/react-native-extra-dimensions-android#v1.2.5",
     "react-native-gesture-handler": "1.10.3",
     "typescript": "3.9.7"
   },

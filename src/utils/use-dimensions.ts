@@ -1,21 +1,12 @@
 import * as React from 'react';
 import { Dimensions, EmitterSubscription, ScaledSize } from 'react-native';
-import {
-  getRealWindowHeight,
-  getSoftMenuBarHeight,
-  isSoftMenuBarEnabled,
-} from 'react-native-extra-dimensions-android';
-
 import { isAndroid, isBelowRN65 } from './devices';
+import getAndroidScreenHeight from './extra-dimensions';
 
-export function getDimensions(window: ScaledSize) {
+function getDimensions(window: ScaledSize): ScaledSize {
   return {
-    width: window.width,
-    height: isAndroid
-      ? (
-        getRealWindowHeight() - (isSoftMenuBarEnabled() ? getSoftMenuBarHeight() : 0)
-      )
-      : window.height,
+    ...window,
+    height: isAndroid ? getAndroidScreenHeight() : window.height,
   };
 }
 
