@@ -1,13 +1,29 @@
 import * as React from 'react';
 import { Dimensions, EmitterSubscription, ScaledSize } from 'react-native';
+import {
+  getRealWindowHeight,
+  getSoftMenuBarHeight,
+  isSoftMenuBarEnabled,
+} from 'react-native-extra-dimensions-android';
 
-import { isBelowRN65 } from './devices';
+import { isAndroid, isBelowRN65 } from './devices';
+
+export function getDimensions(window: ScaledSize) {
+  return {
+    width: window.width,
+    height: isAndroid
+      ? (
+        getRealWindowHeight() - (isSoftMenuBarEnabled() ? getSoftMenuBarHeight() : 0)
+      )
+      : window.height,
+  };
+}
 
 export const useDimensions = (): ScaledSize => {
-  const [dimensions, setDimensions] = React.useState(Dimensions.get('window'));
+  const [dimensions, setDimensions] = React.useState(getDimensions(Dimensions.get('window')));
 
   const onChange = ({ window }: { window: ScaledSize }): void => {
-    setDimensions(window);
+    setDimensions(getDimensions(window));
   };
 
   React.useEffect(() => {

@@ -16,6 +16,7 @@ export default StyleSheet.create({
 
   modalize__wrapper: {
     flex: 1,
+    justifyContent: 'flex-end',
   },
 
   modalize__content: {
