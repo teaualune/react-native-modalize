@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Dimensions, EmitterSubscription, ScaledSize } from 'react-native';
-import { isAndroid, isBelowRN65 } from './devices';
+import { isAndroid } from './devices';
+import { isBelowRN65 } from './libraries';
 import getAndroidScreenHeight from './extra-dimensions';
 
 function getDimensions(window: ScaledSize): ScaledSize {
